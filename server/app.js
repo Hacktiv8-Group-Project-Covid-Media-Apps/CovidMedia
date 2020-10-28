@@ -1,17 +1,16 @@
 require('dotenv').config()
-
 const express = require('express')
+const routers = require('./routers')
 const app = express()
 const port = 3000
-const routers = require('./routers')
-// const errorHandler = require('./middlewares/errorHandler.js')
+const news_controller = require('./controller/news_controller')
 
+app.use(express.urlencoded({ extended: true}))
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+
 app.use(routers)
+app.get('/news', news_controller.articleNew)
 
-// app.use(errorHandler)
-
-app.listen(port, ()=>{
-    console.log(`Let's Go to Media Covid app Link http://localhost:${port}`)
+app.listen(port, () => {
+  console.log(`Listening to port ${port}`);
 })
