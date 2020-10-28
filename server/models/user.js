@@ -2,6 +2,10 @@
 const {
   Model
 } = require('sequelize');
+
+const bcrypt = require('../helper/bcrypt-user.js');
+const { use } = require('../routers/user.js');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -16,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate:{
         notEmpty: {
           args: true,
@@ -24,27 +29,26 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: {
           args: true,
           msg: 'Email tidak Valid'
-        },
-        notNull: {
-          args: true,
-          msg: 'Email tidak boleh kosong'
         }
       }
     },
     password: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         notEmpty: {
-          args: true,
-          msg: 'Password tidak boleh kosong'
-        },
-        notNull: {
           args: true,
           msg: 'Password tidak boleh kosong'
         }
       }
     }
   }, {
+    hooks:{
+      beforeCreate: user => {
+        const password = bcrypt.validasiRegister(user.password)
+        user.password = password
+      }
+    },
     sequelize,
     modelName: 'User',
   });
