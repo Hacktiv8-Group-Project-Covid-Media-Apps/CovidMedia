@@ -113,6 +113,7 @@
 
   <!-- LANDING PAGE -->
   <section id="landing-page">
+    <!--Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top justify-content-between">
       <div class="logo">
         <h1>Covid Media</h1>
@@ -120,16 +121,40 @@
       <div class="right-navbar">
         <div class="navbar-nav">
           <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link dropdown-toggle" href="#">News</a>
-          <a class="nav-item nav-link" href="#">Stay Productive</a>
-          <a class="nav-item nav-link" onclick="showEmergency(event)" href="#">Emergency</a>
+          <div class="col d-flex">
+            <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#">News</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item news-category">
+                Berita Nasional
+              </a>
+              <a class="dropdown-item news-category">
+                Berita Internasional
+              </a>
+              <a class="dropdown-item news-category">
+                Ekonomi
+              </a>
+              <a class="dropdown-item news-category">
+                Olahraga
+              </a>
+              <a class="dropdown-item news-category">
+                Teknologi
+              </a>
+              <a class="dropdown-item news-category">
+                Hiburan
+              </a>
+              <a class="dropdown-item news-category">
+                Gaya hidup
+              </a>
+            </div>
+          </div>
+          <a class="nav-item nav-link" href="#rs-rujukan">Emergency</a>
           <a class="nav-item nav-link" href="#">Favorites</a>
           <button id="login-nav" class="btn-login" onclick="showLogin(event)">Login/Register</button>
           <button id="logout-nav" class="btn-login" onclick="logout()">Logout</button>
         </div>
       </div>
+      </div>
     </nav>
-
 
     <!--Carousel Wrapper-->
     <div id="carousel-news" class="carousel slide carousel-fade" data-ride="carousel">
@@ -160,89 +185,181 @@
     </div>
     <!--/.Carousel Wrapper-->
 
-    <!-- <h1>Main content</h1>
-    <button onclick="logout()">logout</button> -->
-  </section>
+    <div class="main-content">
+      <div class="row">
+        <!--Side Bar RS Rujukan-->
+        <div id="rs-rujukan" class="col-3">
+          <div class="card side-bar">
+            <div class="card-title">
+              <h1 class="sidebar-title">RS Rujukan</h1>
+            </div>
+            <div class="card-body">
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Aceh">Aceh</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Bali">Bali</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Kep. Bangka Belitung">Kep. Bangka
+                Belitung</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Banten">Banten</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Bengkulu">Bengkulu</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Gorontalo">Gorontalo</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="DKI Jakarta">Jakarta</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Jambi">Jambi</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Jawa Barat">Jawa Barat</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Jawa Tengah">Jawa Tengah</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Jawa Timur">Jawa Timur</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Kalimantan Barat">Kalimantan
+                Barat</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Kalimantan Selatan">Kalimantan
+                Selatan</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" data-toggle="modal" data-target="#modal-rs"
+                class="prov-btn" onclick="dataRumahSakit(value)" value="Kalimantan Timur">Kalimantan
+                Timur</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Kalimantan Utara">Kalimantan
+                Utara</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Kep. Riau">Kep. Riau</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Lampung">Lampung</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Maluku Utara">Maluku Utara</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Maluku">Maluku</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Nusa Tenggara Barat">Nusa Tenggara
+                Barat</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Nusa Tenggara Timur">Nusa Tenggara
+                Timur</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Papua Barat">Papua Barat</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Papua">Papua</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Sulawesi Selatan">Sulawesi
+                Selatan</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Sulawesi Tengah">Sulawesi Tengah</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Sulawesi Tenggara">Sulawesi
+                Tenggara</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Sulawesi Utara">Sulawesi Utara</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Sumatera Barat">Sumatera Barat</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Sumatera Selatan">Sumatera
+                Selatan</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="Sumatera Utara">Sumatera Utara</button><br>
+              <button data-toggle="modal" data-target="#modal-rs" class="prov-btn" onclick="dataRumahSakit(value)"
+                value="DI Yogyakarta">Yogyakarta</button><br>
+            </div>
+          </div>
+        </div>
+        <div class="col news-content">
+          <!--Covid Data-->
+          <div class="covid-data">
+            <div class="card ">
+              <div class="card-title">
+                <h1 class="text-center title-section">Data Covid-19 Terbaru Indonesia</h1>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col covid-data-section">
+                    <div class="card card-covid-data">
+                      <div id="card-positif" class="card-body">
 
-<!-- EMERGENCY PAGE -->
-  <section id = 'Emergency-page'>
-    <nav class="navbar navbar-expand-lg navbar-dark justify-content-between" style="background-color: #0051ff;">
-      <div class="logo">
-        <h1>Covid Media</h1>
-      </div>
-      <div class="right-navbar">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link dropdown-toggle" href="#">News</a>
-          <a class="nav-item nav-link" href="#">Stay Productive</a>
-          <a class="nav-item nav-link dropdown-toggle" href="#">Emergency</a>
-          <a class="nav-item nav-link" href="#">Favorites</a>
-          <button id="login-nav" class="btn-login" onclick="showLogin(event)">Login/Register</button>
-          <button id="logout-nav" class="btn-login" onclick="logout()">Logout</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col covid-data-section">
+                    <div class="card card-covid-data">
+                      <div id="card-dirawat" class="card-body">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col covid-data-section">
+                    <div class="card card-covid-data">
+                      <div id="card-sembuh" class="card-body">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col covid-data-section">
+                    <div class="card card-covid-data">
+                      <div id="card-meninggal" class="card-body">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="card-data-covid">
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Berita terkini-->
+          <div class="berita-terkini">
+            <h1>Berita Terkini</h1>
+            <h1>Berita tentang Covid</h1>
+            <h1>Berita tentang Covid</h1>
+          </div>
         </div>
       </div>
-    </nav>
-    <h1>Emergency</h1>
+    </div>
 
-    <!-- BUTTON PROV -->
-    <div class="row">
-      <!-- LEFT/PROVINSI -->
-      <div class="col-3">
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Aceh">Aceh</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Bali">Bali</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kep. Bangka Belitung">Kep. Bangka Belitung</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Banten">Banten</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Bengkulu">Bengkulu</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Gorontalo">Gorontalo</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="DKI Jakarta">Jakarta</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Jambi">Jambi</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Jawa Barat">Jawa Barat</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Jawa Tengah">Jawa Tengah</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Jawa Timur">Jawa Timur</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kalimantan Barat">Kalimantan Barat</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kalimantan Selatan">Kalimantan Selatan</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kalimantan Timur">Kalimantan Timur</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kalimantan Utara">Kalimantan Utara</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kep. Riau">Kep. Riau</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Lampung">Lampung</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Maluku Utara">Maluku Utara</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Maluku">Maluku</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Nusa Tenggara Barat">Nusa Tenggara Barat</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Nusa Tenggara Timur">Nusa Tenggara Timur</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Papua Barat">Papua Barat</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Papua">Papua</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sulawesi Selatan">Sulawesi Selatan</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sulawesi Tengah">Sulawesi Tengah</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sulawesi Tenggara">Sulawesi Tenggara</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sulawesi Utara">Sulawesi Utara</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sumatera Barat">Sumatera Barat</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sumatera Selatan">Sumatera Selatan</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sumatera Utara">Sumatera Utara</button><br>
-        <button class="prov-btn" onclick="dataRumahSakit(value)" value="DI Yogyakarta">Yogyakarta</button><br>
+    <!-- MODAL -->
+    <div class="modal fade" id="modal-rs" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">RS Rujukan Corona</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-rs">
+              <thead class="thead-dark">
+                <th>Nama Rumah Sakit</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Region</th>
+              </thead>
+              <tbody id="data-rs">
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
-
-      <!-- DATA RS -->
-      <!-- RIGHT/TABLE RUMAH SAKIT -->
-      <div class="col emergency-content">
-          <table class="table table-rs">
-            <thead class="thead-dark">
-              <th>Nama Rumah Sakit</th>
-              <th>Address</th>
-              <th>Phone</th>
-              <th>Region</th>
-            </thead>
-            <tbody id= "data-rs">
-            </tbody>
-          </table>
-      </div>
-
     </div>
   </section>
 
-<!-- FOOTER -->
-<footer>
-  <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script>, Covid-Media-Apps-Team</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>Copyright &copy;
+      <script>document.write(new Date().getFullYear());</script>, Covid-Media-Apps-Team</p>
+  </footer>
 
 </body>
 

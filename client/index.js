@@ -1,30 +1,28 @@
-
 const SERVER = "http://localhost:3000/"
 
 $(document).ready(function () {
   const token = localStorage.getItem("token")
   if (token) {
     $("#landing-page").show()
-    $("#Emergency-page").hide()
     $("#register-page").hide()
     $("#login-page").hide()
     $("#login-nav").hide()
     $("#logout-nav").show()
     fetchCarousel()
+    fetchCovidData()
   } else {
     $("#landing-page").show()
-    $("#Emergency-page").hide()
     $("#register-page").hide()
     $("#login-page").hide()
     $("#login-nav").show()
     $("#logout-nav").hide()
     fetchCarousel()
+    fetchCovidData()
   }
-
 })
 
 $(window).scroll(function () {
-  $('.navbar').toggleClass('scrolled', $(this).scrollTop() > 200)
+  $('.navbar').toggleClass('scrolled', $(this).scrollTop() > 300)
 })
 
 function showLogin(e) {
@@ -127,26 +125,63 @@ function fetchCarousel() {
     })
 }
 
-function showEmergency(e) {
-  e.preventDefault()
-  $("#Emergency-page").show()
-  dataRumahSakit('All')
-  $("#landing-page").hide()
-  $("#register-page").hide()
-  $("#login-page").hide()
+function fetchCovidData() {
+  $.ajax({
+    method: "GET",
+    url: SERVER + "covid/data"
+  })
+    .then(response => {
+      const { positif, dirawat, sembuh, meninggal, lastUpdate } = response.total
+      let html = []
+      for (const key in response.penambahan) {
+        if (response.penambahan[key] > 0) {
+          html.push(`
+          <p class="text-center increasing">(+${response.penambahan[key]})</p>
+          `)
+        } else {
+          html.push(`
+          <p class="text-center decreasing">(${response.penambahan[key]})</p>
+          `)
+        }
+      }
+      $("#card-positif").empty().append(`
+      <h2 class="text-center">Positif</h2>
+      <h1 class="text-center">${positif}</h1>
+      ${html[0]}
+      `)
+      $("#card-dirawat").empty().append(`
+      <h2 class="text-center">Dirawat</h2>
+      <h1 class="text-center">${dirawat}</h1>
+      ${html[1]}
+      `)
+      $("#card-sembuh").empty().append(`
+      <h2 class="text-center">Sembuh</h2>
+      <h1 class="text-center">${sembuh}</h1>
+      ${html[2]}
+      `)
+      $("#card-meninggal").empty().append(`
+      <h2 class="text-center">Meninggal</h2>
+      <h1 class="text-center">${meninggal}</h1>
+      ${html[3]}
+      `)
+      $("#card-data-covid").empty().append(`
+      <p class="text-muted"> *Last update: ${lastUpdate} </p>
+      `)
+    })
+    .fail(err => {
+      console.log(err)
+    })
 }
-
 
 function dataRumahSakit(prov) {
   $.ajax({
     method: "GET",
     url: SERVER + "covid/data/hospital"
   })
-  .done(response => {
-    console.log(prov)
-    $("#data-rs").empty()
-    response.forEach(data => {
-      const html = `
+    .done(response => {
+      $("#data-rs").empty()
+      response.forEach(data => {
+        const html = `
       <tr>
       <td> ${data.name}</td>
       <td> ${data.address}</td>
@@ -154,21 +189,21 @@ function dataRumahSakit(prov) {
       <td> ${data.region}</td>
       </tr>
       `
-      if(data.province === prov) {
-        $("#data-rs").append(html)  
-      } else if (prov === "All") {
-        $("#data-rs").append(html)
-      }
+        if (data.province === prov) {
+          $("#data-rs").append(html)
+        } else if (prov === "All") {
+          $("#data-rs").append(html)
+        }
+      })
     })
-  })
-  .fail(err => {
-    console.log(err)
-  })
+    .fail(err => {
+      console.log(err)
+    })
 }
 
 function logout() {
   $("#landing-page").hide()
-  $("#main-content").hide()
+  $("#login-page").show()
   localStorage.removeItem("token")
   $("#login-email").val("")
   $("#login-password").val("")

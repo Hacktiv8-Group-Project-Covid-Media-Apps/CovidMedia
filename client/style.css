@@ -1,4 +1,7 @@
 /* Global */
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -103,7 +106,38 @@ body {
   background-color: #009fff;
 }
 
-/* Emergency Page */
+/* Main Content */
+.sidebar-title {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.title-section {
+  margin-top: 16px;
+}
+
+.news-content {
+  margin: 16px 32px;
+}
+
+.card-covid-data {
+  width: 25vh;
+}
+
+.increasing {
+  color: green;
+}
+
+.decreasing {
+  color: red;
+}
+
+#card-data-covid {
+  text-align: right;
+  margin-top: 16px;
+}
+
+/* Data RS Rujukan */
 .emergency-content {
   max-width: 150vh;
   /* max-height: 100vh; */
@@ -111,6 +145,7 @@ body {
 .prov-btn {
   border: 0;
   background-color: #fff;
+  color: #0051ff;
 }
 
 .table-rs {
