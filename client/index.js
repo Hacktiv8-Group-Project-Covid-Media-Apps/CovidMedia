@@ -6,18 +6,28 @@ $(document).ready(function () {
     $("#landing-page").show()
     $("#register-page").hide()
     $("#login-page").hide()
+    $("#login-nav").hide()
+    $("#logout-nav").show()
     fetchCarousel()
   } else {
-    $("#landing-page").hide()
-    $("#register-page").show()
+    $("#landing-page").show()
+    $("#register-page").hide()
     $("#login-page").hide()
+    $("#login-nav").show()
+    $("#logout-nav").hide()
+    fetchCarousel()
   }
+})
+
+$(window).scroll(function () {
+  $('.navbar').toggleClass('scrolled', $(this).scrollTop() > 200)
 })
 
 function showLogin(e) {
   e.preventDefault()
   $("#register-page").hide()
   $("#login-page").show()
+  $("#landing-page").hide()
 }
 
 function showRegister(e) {
@@ -66,6 +76,8 @@ function login(e) {
       $("#landing-page").show()
       $("#register-page").hide()
       $("#login-page").hide()
+      $("#login-nav").hide()
+      $("#logout-nav").show()
       fetchCarousel()
     })
     .fail(err => {
@@ -75,46 +87,44 @@ function login(e) {
 
 function fetchCarousel() {
   $.ajax({
-    method: "GET", 
+    method: "GET",
     url: SERVER + "news/covid"
   })
-  .done(response => {
-    for(let i = 0; i <5; i++) {
-      
-      const title = response[i].title
-      console.log(title, "<<<==Title")
-      const description = response[i].description
-      const image = response[i].urlToImage
-      let type = "carousel-item"
-      if (i === 0) {
-        type += " active"
-      }
+    .done(response => {
+      $("#carousel-headline").empty()
+      for (let i = 0; i < 4; i++) {
 
-      const html = ` 
-      <div class="${type}">
-      <!--Mask color-->
-      <div class="view">
-        <img class="d-block w-100" src="${image}"
-          alt="Second slide">
-        <div class="mask rgba-black-strong"></div>
-      </div>
-      <div class="carousel-caption">
-        <h3 class="h3-responsive">${title}</h3>
-        <p>${description}</p>
-      </div>
-      </div>
+        const title = response[i].title
+        const description = response[i].description
+        const image = response[i].urlToImage
+        let type = "carousel-item"
+        if (i === 0) {
+          type += " active"
+        }
+
+        const html = ` 
+        <div class="${type}">
+          <div class="view">
+              <img class="d-block w-100" src="${image}"
+               alt="Second slide">
+              <div class="mask rgba-black-strong"></div>
+          </div>
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">${title}</h3>
+            <p>${description}</p>
+          </div>
+       </div>
       `
-      $("#carousel-headline").empty().append(html)
-      
-    }
-  })
-  .fail(err => {
-    console.log(err)
-  })
+        $("#carousel-headline").append(html)
+      }
+    })
+    .fail(err => {
+      console.log(err)
+    })
 }
 
 function logout() {
-  $("#login-page").show()
+  $("#landing-page").hide()
   $("#main-content").hide()
   localStorage.removeItem("token")
   $("#login-email").val("")
