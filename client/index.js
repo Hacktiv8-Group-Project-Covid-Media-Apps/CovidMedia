@@ -6,6 +6,7 @@ $(document).ready(function () {
     $("#landing-page").show()
     $("#register-page").hide()
     $("#login-page").hide()
+    fetchCarousel()
   } else {
     $("#landing-page").hide()
     $("#register-page").show()
@@ -65,10 +66,51 @@ function login(e) {
       $("#landing-page").show()
       $("#register-page").hide()
       $("#login-page").hide()
+      fetchCarousel()
     })
     .fail(err => {
       console.log(err)
     })
+}
+
+function fetchCarousel() {
+  $.ajax({
+    method: "GET", 
+    url: SERVER + "news/covid"
+  })
+  .done(response => {
+    for(let i = 0; i <5; i++) {
+      
+      const title = response[i].title
+      console.log(title, "<<<==Title")
+      const description = response[i].description
+      const image = response[i].urlToImage
+      let type = "carousel-item"
+      if (i === 0) {
+        type += " active"
+      }
+
+      const html = ` 
+      <div class="${type}">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-100" src="${image}"
+          alt="Second slide">
+        <div class="mask rgba-black-strong"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">${title}</h3>
+        <p>${description}</p>
+      </div>
+      </div>
+      `
+      $("#carousel-headline").empty().append(html)
+      
+    }
+  })
+  .fail(err => {
+    console.log(err)
+  })
 }
 
 function logout() {
