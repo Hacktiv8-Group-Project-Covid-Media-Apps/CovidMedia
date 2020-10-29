@@ -3,11 +3,11 @@ const SERVER = "http://localhost:3000/"
 $(document).ready(function () {
   const token = localStorage.getItem("token")
   if (token) {
-    $("#main-content").show()
+    $("#landing-page").show()
     $("#register-page").hide()
     $("#login-page").hide()
   } else {
-    $("#main-content").hide()
+    $("#landing-page").hide()
     $("#register-page").show()
     $("#login-page").hide()
   }
@@ -62,7 +62,7 @@ function login(e) {
     .done(response => {
       const token = response.token
       localStorage.setItem("token", token)
-      $("#main-content").show()
+      $("#landing-page").show()
       $("#register-page").hide()
       $("#login-page").hide()
     })
