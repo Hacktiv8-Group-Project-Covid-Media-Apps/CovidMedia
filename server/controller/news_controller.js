@@ -29,12 +29,10 @@ class News {
     }
 
     static getCovidHeadlines(req, res, next) {
-        axios.get('https://newsapi.org/v2/everything?' +
-            'qInTitle=covid+Indonesia&' +
-            'pageSize=5&' +
-            'apiKey=a1eb475f63c54ef9b55b28124fc93405')
+        axios.get('https://dekontaminasi.com/api/id/covid19/hospitals')
             .then(data => {
-                res.status(200).json(data.data.articles);
+                console.log(data)
+                res.status(200).json(data.data);
             })
             .catch(err => {
                 next(err);
