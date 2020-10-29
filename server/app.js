@@ -5,9 +5,11 @@ const app = express()
 const port = 3000
 const errorHandler = require('./middlewares/errorHandler.js')
 const news_controller = require('./controller/news_controller')
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(routers)
 app.use(errorHandler)
 
