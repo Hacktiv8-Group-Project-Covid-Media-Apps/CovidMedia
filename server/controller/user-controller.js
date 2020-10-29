@@ -1,10 +1,10 @@
-const {User} = require('../models')
+const { User } = require('../models')
 const BcryptValidasiUser = require('../helper/bcrypt-user')
 const jwtUser = require('../helper/jwt-user.js')
 
-class UserController{
+class UserController {
 
-    static async registerUser(req, res, next){
+    static async registerUser(req, res, next) {
         try {
             let getDatauser = req.body
             let newUser = await User.create(getDatauser)
@@ -18,23 +18,23 @@ class UserController{
         }
     }
 
-    static async loginUser(req, res, next){
+    static async loginUser(req, res, next) {
         try {
             let userLogin = req.body
             let dataUserDB = await User.findOne({
-                where: {email: userLogin.email}
+                where: { email: userLogin.email }
             })
-            if(!dataUserDB){
+            if (!dataUserDB) {
                 throw {
                     status: 401,
                     msg: 'Email atau Password anda tidak Valid'
                 }
-            }else if(!BcryptValidasiUser.validasiLoginUser(userLogin.password, dataUserDB.password)){
+            } else if (!BcryptValidasiUser.validasiLoginUser(userLogin.password, dataUserDB.password)) {
                 throw {
                     status: 401,
                     msg: 'Email atau Password anda tidak Valid'
                 }
-            }else{
+            } else {
                 let dataUser = {
                     id: dataUserDB.id,
                     email: dataUserDB.email
