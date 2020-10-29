@@ -4,6 +4,9 @@ body {
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  position: relative;
+  padding-bottom: 58px;
+  min-height: 100vh;
 }
 
 ::-webkit-scrollbar {
@@ -33,6 +36,8 @@ body {
 .login-title-explanation {
   text-align: center;
 }
+
+
 
 #login-error {
   color: red;
@@ -97,3 +102,31 @@ body {
 .btn-login:hover {
   background-color: #009fff;
 }
+
+/* Emergency Page */
+.emergency-content {
+  max-width: 150vh;
+  /* max-height: 100vh; */
+}
+.prov-btn {
+  border: 0;
+  background-color: #fff;
+}
+
+.table-rs {
+  max-height: 60vh;
+  overflow: scroll;
+}
+
+footer {
+  text-align: center;
+  background-color: #0051ff;
+  color: #fff;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* position: fixed;
+  z-index: 1; */
+}
+

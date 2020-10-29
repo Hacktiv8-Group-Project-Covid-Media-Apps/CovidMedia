@@ -1,9 +1,11 @@
+
 const SERVER = "http://localhost:3000/"
 
 $(document).ready(function () {
   const token = localStorage.getItem("token")
   if (token) {
     $("#landing-page").show()
+    $("#Emergency-page").hide()
     $("#register-page").hide()
     $("#login-page").hide()
     $("#login-nav").hide()
@@ -11,12 +13,14 @@ $(document).ready(function () {
     fetchCarousel()
   } else {
     $("#landing-page").show()
+    $("#Emergency-page").hide()
     $("#register-page").hide()
     $("#login-page").hide()
     $("#login-nav").show()
     $("#logout-nav").hide()
     fetchCarousel()
   }
+
 })
 
 $(window).scroll(function () {
@@ -121,6 +125,45 @@ function fetchCarousel() {
     .fail(err => {
       console.log(err)
     })
+}
+
+function showEmergency(e) {
+  e.preventDefault()
+  $("#Emergency-page").show()
+  dataRumahSakit('All')
+  $("#landing-page").hide()
+  $("#register-page").hide()
+  $("#login-page").hide()
+}
+
+
+function dataRumahSakit(prov) {
+  $.ajax({
+    method: "GET",
+    url: SERVER + "covid/data/hospital"
+  })
+  .done(response => {
+    console.log(prov)
+    $("#data-rs").empty()
+    response.forEach(data => {
+      const html = `
+      <tr>
+      <td> ${data.name}</td>
+      <td> ${data.address}</td>
+      <td> ${data.phone}</td>
+      <td> ${data.region}</td>
+      </tr>
+      `
+      if(data.province === prov) {
+        $("#data-rs").append(html)  
+      } else if (prov === "All") {
+        $("#data-rs").append(html)
+      }
+    })
+  })
+  .fail(err => {
+    console.log(err)
+  })
 }
 
 function logout() {

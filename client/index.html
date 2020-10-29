@@ -111,6 +111,7 @@
     </div>
   </section>
 
+  <!-- LANDING PAGE -->
   <section id="landing-page">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top justify-content-between">
       <div class="logo">
@@ -121,13 +122,14 @@
           <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link dropdown-toggle" href="#">News</a>
           <a class="nav-item nav-link" href="#">Stay Productive</a>
-          <a class="nav-item nav-link dropdown-toggle" href="#">Emergency</a>
+          <a class="nav-item nav-link" onclick="showEmergency(event)" href="#">Emergency</a>
           <a class="nav-item nav-link" href="#">Favorites</a>
           <button id="login-nav" class="btn-login" onclick="showLogin(event)">Login/Register</button>
           <button id="logout-nav" class="btn-login" onclick="logout()">Logout</button>
         </div>
       </div>
     </nav>
+
 
     <!--Carousel Wrapper-->
     <div id="carousel-news" class="carousel slide carousel-fade" data-ride="carousel">
@@ -158,9 +160,89 @@
     </div>
     <!--/.Carousel Wrapper-->
 
-    <h1>Main content</h1>
-    <button onclick="logout()">logout</button>
+    <!-- <h1>Main content</h1>
+    <button onclick="logout()">logout</button> -->
   </section>
+
+<!-- EMERGENCY PAGE -->
+  <section id = 'Emergency-page'>
+    <nav class="navbar navbar-expand-lg navbar-dark justify-content-between" style="background-color: #0051ff;">
+      <div class="logo">
+        <h1>Covid Media</h1>
+      </div>
+      <div class="right-navbar">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link dropdown-toggle" href="#">News</a>
+          <a class="nav-item nav-link" href="#">Stay Productive</a>
+          <a class="nav-item nav-link dropdown-toggle" href="#">Emergency</a>
+          <a class="nav-item nav-link" href="#">Favorites</a>
+          <button id="login-nav" class="btn-login" onclick="showLogin(event)">Login/Register</button>
+          <button id="logout-nav" class="btn-login" onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </nav>
+    <h1>Emergency</h1>
+
+    <!-- BUTTON PROV -->
+    <div class="row">
+      <!-- LEFT/PROVINSI -->
+      <div class="col-3">
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Aceh">Aceh</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Bali">Bali</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kep. Bangka Belitung">Kep. Bangka Belitung</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Banten">Banten</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Bengkulu">Bengkulu</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Gorontalo">Gorontalo</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="DKI Jakarta">Jakarta</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Jambi">Jambi</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Jawa Barat">Jawa Barat</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Jawa Tengah">Jawa Tengah</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Jawa Timur">Jawa Timur</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kalimantan Barat">Kalimantan Barat</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kalimantan Selatan">Kalimantan Selatan</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kalimantan Timur">Kalimantan Timur</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kalimantan Utara">Kalimantan Utara</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Kep. Riau">Kep. Riau</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Lampung">Lampung</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Maluku Utara">Maluku Utara</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Maluku">Maluku</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Nusa Tenggara Barat">Nusa Tenggara Barat</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Nusa Tenggara Timur">Nusa Tenggara Timur</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Papua Barat">Papua Barat</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Papua">Papua</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sulawesi Selatan">Sulawesi Selatan</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sulawesi Tengah">Sulawesi Tengah</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sulawesi Tenggara">Sulawesi Tenggara</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sulawesi Utara">Sulawesi Utara</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sumatera Barat">Sumatera Barat</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sumatera Selatan">Sumatera Selatan</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="Sumatera Utara">Sumatera Utara</button><br>
+        <button class="prov-btn" onclick="dataRumahSakit(value)" value="DI Yogyakarta">Yogyakarta</button><br>
+      </div>
+
+      <!-- DATA RS -->
+      <!-- RIGHT/TABLE RUMAH SAKIT -->
+      <div class="col emergency-content">
+          <table class="table table-rs">
+            <thead class="thead-dark">
+              <th>Nama Rumah Sakit</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Region</th>
+            </thead>
+            <tbody id= "data-rs">
+            </tbody>
+          </table>
+      </div>
+
+    </div>
+  </section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script>, Covid-Media-Apps-Team</p>
+</footer>
 
 </body>
 
