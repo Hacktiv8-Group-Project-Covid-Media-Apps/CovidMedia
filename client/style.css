@@ -1,3 +1,5 @@
+/* Global */
+
 body {
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
@@ -7,6 +9,8 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+
+/* Login - Register Page */
 
 .login-illustration {
   max-height: 50vh;
@@ -66,4 +70,29 @@ body {
 .login-btn:hover {
   background-color: #009fff;
   color: white;
+}
+
+/* Landing Page */
+.navbar {
+  background-color: #0051ff;
+}
+
+.logo {
+  color: white;
+}
+
+.nav-item {
+  margin: 0 8px;
+}
+
+.btn-login {
+  background-color: #0051ff;
+  color: white;
+  border: 2px solid white;
+  border-radius: 15px;
+  min-width: 15vh;
+}
+
+.btn-login:hover {
+  background-color: #009fff;
 }

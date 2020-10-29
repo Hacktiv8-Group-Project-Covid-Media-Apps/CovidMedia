@@ -109,7 +109,23 @@
     </div>
   </section>
 
-  <section id="main-content">
+  <section id="landing-page">
+    <nav class="navbar navbar-expand-lg navbar-dark justify-content-between">
+      <div class="logo">
+        <h1>Logo</h1>
+      </div>
+      <div class="right-navbar">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link dropdown-toggle" href="#">News</a>
+          <a class="nav-item nav-link" href="#">Stay Productive</a>
+          <a class="nav-item nav-link dropdown-toggle" href="#">Emergency</a>
+          <a class="nav-item nav-link" href="#">Favorites</a>
+          <button id="login-nav" class="btn-login" onclick="showLogin()">Login/Register</button>
+          <button id="logout-nav" class="btn-login" onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </nav>
     <h1>Main content</h1>
     <button onclick="logout()">logout</button>
   </section>
