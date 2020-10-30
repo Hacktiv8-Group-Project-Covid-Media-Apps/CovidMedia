@@ -36,6 +36,17 @@ function afterLogin() {
   fetchCovidData()
 }
 
+function beforeLogin() {
+  $("#landing-page").hide()
+  $("#register-page").show()
+  $("#login-page").show()
+  $("#login-nav").show()
+  $("#logout-nav").show()
+  // fetchCarousel()
+  // fetchCovidData()
+
+}
+
 function showLogin(e) {
   e.preventDefault()
   $("#register-page").hide()
@@ -251,7 +262,9 @@ function dataRumahSakit(prov) {
 function logout() {
   $("#landing-page").hide()
   $("#login-page").show()
+  beforeLogin()
   localStorage.removeItem("token")
   $("#login-email").val("")
   $("#login-password").val("")
+  signOut()
 }
