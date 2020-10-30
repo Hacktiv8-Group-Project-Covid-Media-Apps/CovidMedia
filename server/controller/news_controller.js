@@ -14,7 +14,6 @@ class News {
                 next(err);
             })
     }
-
     static getCovidNews(req, res, next) {
         axios.get('https://newsapi.org/v2/everything?' +
             'qInTitle=covid+Indonesia&' +
@@ -27,17 +26,100 @@ class News {
                 next(err);
             })
     }
-
-    static getCovidHeadlines(req, res, next) {
-        axios.get('https://dekontaminasi.com/api/id/covid19/hospitals')
-            .then(data => {
-                console.log(data)
-                res.status(200).json(data.data);
-            })
-            .catch(err => {
-                next(err);
-            })
+    static allNews(req, res, next){
+        axios.get('https://www.news.developeridn.com/')
+        .then(data => {
+            // console.log(data);
+            res.status(200).json(data.data.data)
+        })
+        .catch(err =>{
+            next(err)
+        })
     }
+    static nationalNews(req,res,next){
+        axios.get('https://www.news.developeridn.com/nasional')
+        .then(data=>{
+            res.status(200).json(data.data.data)
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static internationalNews(req,res,next){
+        axios.get('https://www.news.developeridn.com/internasional')
+        .then(data=>{
+            res.status(200).json(data.data.data)
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static economicNews(req,res,next){
+        axios.get('https://www.news.developeridn.com/ekonomi')
+        .then(data=>{
+            res.status(200).json(data.data.data)
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static sportNews(req,res,next){
+        axios.get('https://www.news.developeridn.com/olahraga')
+        .then(data=>{
+            res.status(200).json(data.data.data)
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static techNews(req,res,next){
+        axios.get('https://www.news.developeridn.com/teknologi')
+        .then(data=>{
+            res.status(200).json(data.data.data)
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static entertainment(req,res,next){
+        axios.get('https://www.news.developeridn.com/hiburan')
+        .then(data=>{
+            res.status(200).json(data.data.data)
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static lifetyle(req,res,next){
+        axios.get(' 	https://www.news.developeridn.com/gaya-hidupp')
+        .then(data=>{
+            res.status(200).json(data.data.data)
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static detailNews(req,res,next){ 
+        const url = req.body.url
+        axios.get(`https://www.news.developeridn.com/detail/?url=${url}`)
+        .then(data=>{
+            res.status(200).json(data.data.data)
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static findNews(req,res,next){
+        axios.get('https://www.news.developeridn.com/search/?q=covid')
+        .then(data=>{
+            res.status(200).json(data.data.data)
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+
+    
 }
 
 module.exports = News
