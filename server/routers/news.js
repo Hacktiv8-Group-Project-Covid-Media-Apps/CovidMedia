@@ -6,8 +6,8 @@ routers.get('/covid', news_controller.getCovidNews)
 routers.get('/allnews', news_controller.allNews)
 routers.post('/category', news_controller.newsCategory)
 
-routers.get('/detailnews', news_controller.detailNews)
+routers.post('/detailnews', news_controller.detailNews)
 routers.get('/covidnews', news_controller.covidNews)
-routers.get('/search', news_controller.searchNews)
+routers.post('/search', news_controller.searchNews)
 
 module.exports = routers

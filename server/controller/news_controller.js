@@ -39,7 +39,7 @@ class News {
     }
 
     static newsCategory(req, res, next) {
-        const category = req.headers.category
+        const category = req.body.category
 
         axios.get(`https://www.news.developeridn.com/${category}`)
             .then(data => {
@@ -51,7 +51,7 @@ class News {
     }
 
     static detailNews(req, res, next) {
-        const url = req.headers.url
+        const url = req.body.url
         axios.get(`https://www.news.developeridn.com/detail/?url=${url}`)
             .then(data => {
                 res.status(200).json(data.data.data)
@@ -71,7 +71,7 @@ class News {
     }
 
     static searchNews(req, res, next) {
-        const query = req.headers.query
+        const query = req.body.query
         axios.get(`https://www.news.developeridn.com/search/?q=${query}`)
             .then(data => {
                 res.status(200).json(data.data.data)
