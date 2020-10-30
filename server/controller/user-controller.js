@@ -1,6 +1,9 @@
 const { User } = require('../models')
 const BcryptValidasiUser = require('../helper/bcrypt-user')
 const jwtUser = require('../helper/jwt-user.js')
+const {OAuth2Client} = require('google-auth-library')
+// const jwt  = require('../helper/jwt-user')
+const { data } = require('./covid-news-controller')
 
 class UserController {
 
@@ -46,6 +49,43 @@ class UserController {
         } catch (err) {
             next(err)
         }
+    }
+
+    static googleLogin(req, res, next) {
+        let {google_access_token} = req.body
+        const client = new OAuth2Client(process.env.CLIENT_ID);
+        let email = ''
+
+        client.verifyIdToken({
+            idToken: google_access_token,
+            audience: process.env.CLIENT_ID
+        })
+        .then(ticket => {
+            let payload = ticket.getPayload()
+            console.log(payload, '>>>>>>>>')
+            email = payload.email
+            return User.findOne({where: {email:payload.email}})
+        })
+        .then(user=>{
+            if(user ){
+
+                return user
+            } else {
+                var userObj = {
+                    email,
+                    password: 'random'
+                }
+                return User.create(userObj)
+            }
+        })
+        .then(dataUser => {
+            let access_token = jwtUser.tokenUser({id: dataUser.id, email: dataUser.email})
+            return res.status(200).json({access_token})
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
     }
 }
 
