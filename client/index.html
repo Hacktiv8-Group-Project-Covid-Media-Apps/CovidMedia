@@ -124,31 +124,31 @@
           <div class="col d-flex">
             <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#">News</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item news-category">
+              <a onclick="fetchNews(id)" id="nasional" href="#main-news-content" class="dropdown-item news-category">
                 Berita Nasional
               </a>
-              <a class="dropdown-item news-category">
+              <a onclick="fetchNews(id)" id="internasional" href="#main-news-content"
+                class="dropdown-item news-category">
                 Berita Internasional
               </a>
-              <a class="dropdown-item news-category">
+              <a onclick="fetchNews(id)" id="ekonomi" href="#main-news-content" class="dropdown-item news-category">
                 Ekonomi
               </a>
-              <a class="dropdown-item news-category">
+              <a onclick="fetchNews(id)" id="olahraga" href="#main-news-content" class="dropdown-item news-category">
                 Olahraga
               </a>
-              <a class="dropdown-item news-category">
+              <a onclick="fetchNews(id)" id="teknologi" href="#main-news-content" class="dropdown-item news-category">
                 Teknologi
               </a>
-              <a class="dropdown-item news-category">
+              <a onclick="fetchNews(id)" id="hiburan" href="#main-news-content" class="dropdown-item news-category">
                 Hiburan
               </a>
-              <a class="dropdown-item news-category">
+              <a onclick="fetchNews(id)" id="gaya-hidup" href="#main-news-content" class="dropdown-item news-category">
                 Gaya hidup
               </a>
             </div>
           </div>
-          <a class="nav-item nav-link" href="#rs-rujukan">Emergency</a>
-          <a class="nav-item nav-link" href="#">Favorites</a>
+          <a class="nav-item nav-link" href="#rs-rujukan">RS Rujukan Covid</a>
           <button id="login-nav" class="btn-login" onclick="showLogin(event)">Login/Register</button>
           <button id="logout-nav" class="btn-login" onclick="logout()">Logout</button>
         </div>
@@ -156,7 +156,7 @@
       </div>
     </nav>
 
-    <!--Carousel Wrapper-->
+    <!--Carousel-->
     <div id="carousel-news" class="carousel slide carousel-fade" data-ride="carousel">
       <!--Indicators-->
       <ol class="carousel-indicators">
@@ -183,8 +183,8 @@
       </a>
       <!--/.Controls-->
     </div>
-    <!--/.Carousel Wrapper-->
 
+    <!--Main Content-->
     <div class="main-content">
       <div class="row content align-self-center">
         <!--Side Bar RS Rujukan-->
@@ -271,6 +271,7 @@
             </div>
           </div>
         </div>
+        <!--Data Covid-->
         <div class="col news-content">
           <!--Covid Data-->
           <div class="covid-data">
@@ -312,26 +313,83 @@
                 <div id="card-data-covid">
 
                 </div>
+                <div class="news-search ">
+                  <form onsubmit="searchNews(event)"
+                    class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                    <input id="search-bar" class="form-control form-control-sm mr-3 w-75" type="text"
+                      placeholder="Search News" aria-label="Search">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!--Berita terkini-->
+      <!--Berita Terkini-->
       <div class="berita-terkini">
-        <h1>Berita Terkini</h1>
-        <h1>Berita tentang Covid</h1>
-        <h1>Berita tentang Covid</h1>
+        <h1 class="berita-terkini-title">Berita Terkini</h1>
+        <!--Carousel Wrapper-->
+        <id id="latest-news" class="carousel slide carousel-multi-item" data-ride="carousel">
+          <!--Indicators-->
+          <ol class="carousel-indicators">
+            <li data-target="#latest-news" data-slide-to="0" class="active"></li>
+            <li data-target="#latest-news" data-slide-to="1"></li>
+          </ol>
+          <!--/.Indicators-->
+          <!--Slides-->
+          <div class="carousel-inner" role="listbox">
+            <!--First slide-->
+            <div id="latest-news-p1" class="carousel-item active">
+
+            </div>
+            <!--/.First slide-->
+            <!--Second slide-->
+            <div id="latest-news-p2" class="carousel-item">
+
+            </div>
+            <!--/.Second slide-->
+          </div>
+          <!--/.Slides-->
+        </id>
+        <!--Controls-->
+        <div class="text-center controls-top">
+          <a class="btn" href="#latest-news" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+          <a class="btn" href="#latest-news" data-slide="next"><i class="fas fa-chevron-right"></i></a>
+        </div>
+        <!--/.Controls-->
+      </div>
+      <div class="row sidebar-news">
+        <div class="col-3">
+          <div class="card">
+            <div class="card-title">
+              <h2>Berita terkini Covid-19</h2>
+            </div>
+            <div id="covid-news" class="card-body">
+
+            </div>
+          </div>
+        </div>
+        <div id="news-main-content" class="col">
+          <div class="card">
+            <div class="card-title">
+              <h1 id="main-news-content-title">Berita </h1>
+            </div>
+            <div id="main-news-content" class="card-body d-flex justify-content-center flex-wrap">
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    </div>
 
-    <!-- MODAL -->
-    <div class="modal fade" id="modal-rs" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true">
+    <!-- MODAL DATA RS -->
+    <div class="modal fade" id="modal-rs" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">RS Rujukan Corona</h5>
+            <h5 class="modal-title">RS Rujukan Corona</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -354,14 +412,27 @@
         </div>
       </div>
     </div>
+
+    <!-- MODAL News -->
+    <div class="modal fade" id="modal-news" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div id="news-detail" class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script>, Covid-Media-Apps-Team</p>
+    </footer>
   </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>Copyright &copy;
-      <script>document.write(new Date().getFullYear());</script>, Covid-Media-Apps-Team</p>
-  </footer>
-
 </body>
 
 <!-- JQuery -->

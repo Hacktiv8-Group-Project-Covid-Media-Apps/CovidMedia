@@ -139,6 +139,56 @@ body {
   margin-top: 16px;
 }
 
+.news-search {
+  margin: 32px;
+}
+
+.berita-terkini {
+  margin: 16px 8px;
+}
+
+.berita-terkini-title {
+  margin-left: 8px;
+}
+
+.slideshow-control {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.latest-news-card {
+  min-height: 30vh;
+}
+
+.news-image-sidebar {
+  max-width: 100%;
+}
+
+.sidebar-news {
+  margin: 16px;
+}
+
+.news-content-card {
+  width: 38vh;
+  margin: 8px;
+}
+
+.card-news-img {
+  max-width: 100%;
+}
+
+.btn-read {
+  margin-top: 8px;
+  max-width: 100%;
+  background-color: 	#428bca;
+  border: 0;
+  color: white;
+}
+
+.btn-read:hover {
+  background-color:	#5bc0de;
+}
+
 /* Data RS Rujukan */
 .emergency-content {
   max-width: 150vh;
@@ -151,7 +201,7 @@ body {
 }
 
 .province-list {
-  max-height: 20vh;
+  max-height: 30vh;
   overflow-y: auto;
 }
 

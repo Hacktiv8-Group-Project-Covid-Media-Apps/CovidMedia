@@ -21,6 +21,7 @@ class UserController {
     static async loginUser(req, res, next) {
         try {
             let userLogin = req.body
+            console.log(req.body)
             let dataUserDB = await User.findOne({
                 where: { email: userLogin.email }
             })
