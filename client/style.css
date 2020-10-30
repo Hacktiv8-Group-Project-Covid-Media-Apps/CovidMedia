@@ -1,4 +1,7 @@
 /* Global */
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -7,6 +10,7 @@ body {
   position: relative;
   padding-bottom: 58px;
   min-height: 100vh;
+  background-color: #F5F5F5;
 }
 
 ::-webkit-scrollbar {
@@ -103,7 +107,39 @@ body {
   background-color: #009fff;
 }
 
-/* Emergency Page */
+/* Main Content */
+.sidebar-title {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.title-section {
+  margin-top: 16px;
+}
+
+.news-content {
+  margin-top: 16px;
+  margin-right: 16px;
+}
+
+.card-covid-data {
+  width: 25vh;
+}
+
+.increasing {
+  color: green;
+}
+
+.decreasing {
+  color: red;
+}
+
+#card-data-covid {
+  text-align: right;
+  margin-top: 16px;
+}
+
+/* Data RS Rujukan */
 .emergency-content {
   max-width: 150vh;
   /* max-height: 100vh; */
@@ -111,6 +147,21 @@ body {
 .prov-btn {
   border: 0;
   background-color: #fff;
+  color: #0051ff;
+}
+
+.province-list {
+  max-height: 20vh;
+  overflow-y: auto;
+}
+
+.covid-card {
+  max-height: 23vh;
+}
+
+#rs-rujukan {
+  margin-top: 16px;
+  margin-left: 16px;
 }
 
 .table-rs {
