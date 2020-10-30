@@ -14,6 +14,7 @@ const authentication = async (req, res, next) => {
                 throw { msg: 'invalid token', status: 401 }
             } else {
                 req.key = dataUserDB
+
                 next()
             }
         }

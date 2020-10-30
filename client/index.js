@@ -36,6 +36,16 @@ $(window).scroll(function () {
   $('.navbar').toggleClass('scrolled', $(this).scrollTop() > 300)
 })
 
+function afterLogin() {
+  $("#landing-page").show()
+  $("#register-page").hide()
+  $("#login-page").hide()
+  $("#login-nav").hide()
+  $("#logout-nav").show()
+  fetchCarousel()
+  fetchCovidData()
+}
+
 function showLogin(e) {
   e.preventDefault()
   $("#register-page").hide()
@@ -67,7 +77,17 @@ function register(e) {
       $("#login-email").val(email)
     })
     .fail(err => {
-      console.log(err)
+      $("#modal-error").modal("show")
+      const html = `
+      <div class="row d-flex justify-content-center align-items-center">
+
+          <p ${err.msg}
+          </p>
+
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      `
+      $("#errors-detail").empty().append(html)
     })
 }
 
@@ -92,6 +112,37 @@ function login(e) {
       $("#login-nav").hide()
       $("#logout-nav").show()
       fetchCarousel()
+      fetchCarousel()
+      fetchCovidData()
+      fetchLatestNews()
+      fetchCovidNews()
+      fetchNews('hiburan')
+    })
+    .fail(err => {
+      $("#modal-error").modal("show")
+      const html = `
+          <p ${err.msg}
+          </p>
+      `
+      $("#errors-detail").empty().append(html)
+    })
+}
+
+
+
+// GOOGLE API
+function onSignIn(googleUser) {
+  var google_access_token = googleUser.getAuthResponse().id_token;
+  $.ajax({
+    method: 'POST',
+    url: 'http://localhost:3000/user/googleLogin',
+    data: {
+      google_access_token
+    }
+  })
+    .done(response => {
+      localStorage.setItem('token', response.access_token)
+      afterLogin()
     })
     .fail(err => {
       console.log(err)
@@ -268,7 +319,7 @@ function fetchNews(category) {
   $.ajax({
     method: "POST",
     url: SERVER + "news/category",
-    headers: {
+    data: {
       category
     }
   })
@@ -317,9 +368,9 @@ function searchNews(e) {
   $(window).scrollTop($('#main-news-content-title').offset().top);
   const query = $("#search-bar").val()
   $.ajax({
-    method: "GET",
+    method: "POST",
     url: SERVER + "news/search",
-    headers: {
+    data: {
       query
     }
   })
@@ -374,9 +425,9 @@ function showNews(param) {
     url = main[+arr[1]]
   }
   $.ajax({
-    method: "GET",
+    method: "POST",
     url: SERVER + "news/detailnews",
-    headers: {
+    data: {
       url
     }
   })
@@ -433,4 +484,8 @@ function logout() {
   localStorage.removeItem("token")
   $("#login-email").val("")
   $("#login-password").val("")
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    console.log('User signed out.');
+  });
 }
